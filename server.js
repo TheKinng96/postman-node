@@ -1,12 +1,25 @@
-const http = require('http');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const server = http.createServer((request, response) => {
-    console.log('header', request.header)
-    console.log('method', request.method)
-    console.log('url', request.url)
+const app = express();
 
-   response.setHeader('Content-Type', 'application/json');
-   response.end('<h1>Hellooooooo</h1>');
-})
 
-server.listen(3000)
+app.use(express.static(__dirname + '/public'))
+
+
+
+/* app.use(bodyParser.urlencoded({extended:false})) //middleware
+app.use(bodyParser.json()) //middleware postman will not understand the data before we told it to
+
+
+app.get('/:id', (req,res) => {
+    // res.send("getting root");
+    // console.log(req.query)
+    // console.log(req.body)
+    // console.log(req.header)
+    console.log(req.params) //the id after '/'
+    res.status(404).send("not found");
+});
+ */
+
+app.listen(3000);
